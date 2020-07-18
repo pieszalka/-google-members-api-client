@@ -19,6 +19,12 @@ dependencies {
 	implementation("org.springframework.boot:spring-boot-starter")
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
+	implementation("org.jetbrains.kotlin:kotlin-reflect:1.3.72")
+	implementation("com.squareup.moshi:moshi-kotlin:1.9.2")
+	implementation("com.squareup.moshi:moshi-adapters:1.9.2")
+	implementation("com.squareup.okhttp3:okhttp:4.2.2")
+	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.1.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
 	}
