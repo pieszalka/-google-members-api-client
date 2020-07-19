@@ -26,12 +26,12 @@ data class ErrorDetails (
     @Json(name = "reason")
     val reason: kotlin.String,
     @Json(name = "locationType")
-    val locationType: kotlin.String,
+    val locationType: kotlin.String?,
     @Json(name = "message")
     val message: kotlin.String,
     @Json(name = "domain")
-    val domain: kotlin.String,
+    val domain: kotlin.String?,
     @Json(name = "location")
-    val location: kotlin.String
+    val location: kotlin.String?
 )
 

@@ -6,10 +6,13 @@ import arrow.fx.extensions.io.applicative.just
 import com.fasterxml.jackson.databind.DeserializationFeature
 import com.fasterxml.jackson.databind.ObjectMapper
 import com.fasterxml.jackson.module.kotlin.registerKotlinModule
+import com.fourthwall.googlemembersapi.client.support.AccessTokenInterceptor
 import com.fourthwall.googlemembersapi.client.support.ArrowIOCallAdapterFactory
+import okhttp3.Credentials
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import org.openapitools.client.apis.DefaultApi
 import org.openapitools.client.infrastructure.ApiClient
-import org.openapitools.client.models.Error
 import org.openapitools.client.models.ServiceUnavailable
 import retrofit2.HttpException
 import retrofit2.Response
@@ -47,25 +50,18 @@ open class GoogleYoutubeClient {
                 .configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false)
                 .configure(DeserializationFeature.ACCEPT_EMPTY_ARRAY_AS_NULL_OBJECT, true)
 
-        fun createGoogleYoutubeRetrofitClient(
+        fun createGoogleYoutubeClient(
                 googleYoutubeApiUrl: String,
-                //token: String,
+                token: String,
                 customize: (OkHttpClient.Builder) -> OkHttpClient.Builder = { it }
-        ): Retrofit {
-            //val credentials: String = Credentials.basic(username, password)
+        ): DefaultApi {
             val okHttp = customize(OkHttpClient
                     .Builder()
-                    //.addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY))
-                    /*.addInterceptor { chain ->
-                        val request: Request = chain.request()
-                        val authenticatedRequest: Request = request.newBuilder().header("Authorization", credentials).build()
-                        chain.proceed(authenticatedRequest)
-                    }*/)
+                    .addInterceptor(AccessTokenInterceptor(token))
+                    .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)))
                     .build()
             return ApiClient(baseUrl = googleYoutubeApiUrl, okHttpClient = okHttp)
-                    .retrofitBuilder
-                    .addCallAdapterFactory(ArrowIOCallAdapterFactory())
-                    .build()
+                    .createService(DefaultApi::class.java)
         }
     }
 }

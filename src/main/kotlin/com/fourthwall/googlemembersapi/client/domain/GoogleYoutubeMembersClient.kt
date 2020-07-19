@@ -49,9 +49,8 @@ class GoogleYoutubeMembersClient(private val api: DefaultApi) : GoogleYoutubeCli
     }
 
     companion object {
-        fun create(googleYoutubeApiUrl: String): GoogleYoutubeMembersClient {
-            val api = createGoogleYoutubeRetrofitClient(googleYoutubeApiUrl)
-                    .create(DefaultApi::class.java)
+        fun create(googleYoutubeApiUrl: String, token: String): GoogleYoutubeMembersClient {
+            val api = createGoogleYoutubeClient(googleYoutubeApiUrl, token)
             return GoogleYoutubeMembersClient(api)
         }
     }

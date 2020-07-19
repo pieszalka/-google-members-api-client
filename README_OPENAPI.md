@@ -36,6 +36,9 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**getYoutubeV3Members**](docs/DefaultApi.md#getyoutubev3members) | **GET** /youtube/v3/members | 
+*DefaultApi* | [**getYoutubeV3Members_0**](docs/DefaultApi.md#getyoutubev3members_0) | **GET** /youtube/v3//members | 
+*DefaultApi* | [**getYoutubeV3Members_1**](docs/DefaultApi.md#getyoutubev3members_1) | **GET** /youtube/v3///members | 
+*DefaultApi* | [**getYoutubeV3Members_2**](docs/DefaultApi.md#getyoutubev3members_2) | **GET** /youtube/v3////members | 
 *DefaultApi* | [**getYoutubeV3Membershipslevels**](docs/DefaultApi.md#getyoutubev3membershipslevels) | **GET** /youtube/v3/membershipsLevels | 
 
 
@@ -66,4 +69,8 @@ Class | Method | HTTP request | Description
 <a name="documentation-for-authorization"></a>
 ## Documentation for Authorization
 
-All endpoints do not require authorization.
+<a name="httpAuth"></a>
+### httpAuth
+
+- **Type**: HTTP basic authentication
+

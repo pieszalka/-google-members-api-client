@@ -28,6 +28,7 @@ dependencies {
 	implementation("com.squareup.moshi:moshi-kotlin:1.9.2")
 	implementation("com.squareup.moshi:moshi-adapters:1.9.2")
 	implementation("com.squareup.okhttp3:okhttp:4.2.2")
+	implementation("com.squareup.okhttp3:logging-interceptor:4.2.2")
 
 	//arrow
 	implementation("io.arrow-kt:arrow-core-data:0.10.5")

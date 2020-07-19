@@ -19,6 +19,15 @@ interface DefaultApi {
     @GET("/youtube/v3/members")
     fun getYoutubeV3Members(@Query("part") part: kotlin.String, @Query("maxResults") maxResults: kotlin.Int): Call<MemberListDto>
 
+    @GET("/youtube/v3//members")
+    fun getYoutubeV3Members_0(@Query("part") part: kotlin.String, @Query("filterByMemberChannelId") filterByMemberChannelId: kotlin.String): Call<MemberListDto>
+
+    @GET("/youtube/v3///members")
+    fun getYoutubeV3Members_1(@Query("part") part: kotlin.String, @Query("mode") mode: kotlin.String): Call<MemberListDto>
+
+    @GET("/youtube/v3////members")
+    fun getYoutubeV3Members_2(@Query("part") part: kotlin.String, @Query("maxResults") maxResults: kotlin.Int, @Query("filterByMemberChannelId") filterByMemberChannelId: kotlin.String, @Query("mode") mode: kotlin.String, @Query("pageToken") pageToken: kotlin.String, @Query("hasAccessToLevel") hasAccessToLevel: kotlin.String): Call<MemberListDto>
+
     @GET("/youtube/v3/membershipsLevels")
     fun getYoutubeV3Membershipslevels(@Query("part") part: kotlin.String): Call<MembershipLevelListDto>
 

@@ -55,10 +55,10 @@ open class GoogleApiDomain(
     }
 
     companion object {
-        fun create(googleYoutubeApiUrl: String): GoogleApiDomain {
+        fun create(googleYoutubeApiUrl: String, token: String): GoogleApiDomain {
             return GoogleApiDomain(
-                    GoogleYoutubeMembersClient.create(googleYoutubeApiUrl),
-                    GoogleYoutubeMembershipsLevelsClient.create(googleYoutubeApiUrl)
+                    GoogleYoutubeMembersClient.create(googleYoutubeApiUrl, token),
+                    GoogleYoutubeMembershipsLevelsClient.create(googleYoutubeApiUrl, token)
             )
         }
     }
