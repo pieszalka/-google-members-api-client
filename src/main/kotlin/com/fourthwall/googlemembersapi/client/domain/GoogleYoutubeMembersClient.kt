@@ -14,7 +14,13 @@ class GoogleYoutubeMembersClient(private val api: DefaultApi) : GoogleYoutubeCli
     override fun listAllMembers(part: String, maxResults: Int): Either<Throwable, MemberListDto> {
         return api.getYoutubeV3Members(part, maxResults)
                 .asIO { it.right() }
-                .redeemWith({ mapException<MemberListDto>(it) }, { it.just().map { Either.right(it.body()!!) } })
+                .redeemWith({ mapException<MemberListDto>(it) }, { it.just().map {
+                    if (it.body() != null) {
+                        Either.right(it.body()!!)
+                    } else {
+                        mapError(it)
+                    }
+                } })
                 .unsafeRunSync()
     }
 

@@ -10,7 +10,9 @@ import com.fourthwall.googlemembersapi.client.support.ArrowIOCallAdapterFactory
 import okhttp3.OkHttpClient
 import org.openapitools.client.infrastructure.ApiClient
 import org.openapitools.client.models.Error
+import org.openapitools.client.models.ServiceUnavailable
 import retrofit2.HttpException
+import retrofit2.Response
 import retrofit2.Retrofit
 
 open class GoogleYoutubeClient {
@@ -22,7 +24,7 @@ open class GoogleYoutubeClient {
                     ?.errorBody()
                     ?.string()
                     ?.let { Either.left(GoogleYoutubeError.fromResponse(
-                            objectMapper.readValue<Error>(it, Error::class.java)
+                            objectMapper.readValue<ServiceUnavailable>(it, ServiceUnavailable::class.java).error
                     )) }
                     ?.just()
                     ?: IO.raiseError(ex)
@@ -30,6 +32,14 @@ open class GoogleYoutubeClient {
         else ->
             IO.raiseError(ex)
     }
+
+    protected fun <T>mapError(response: Response<T>): Either<Throwable, T> =
+        response
+            .errorBody()!!
+            .string()
+            .let { Either.left(GoogleYoutubeError.fromResponse(
+                    objectMapper.readValue<ServiceUnavailable>(it, ServiceUnavailable::class.java).error
+            )) }
 
     companion object {
 

@@ -2,6 +2,7 @@ package com.fourthwall.googlemembersapi.client.rest
 
 import arrow.core.Either
 import com.fourthwall.googlemembersapi.client.domain.GoogleApiDomain
+import com.fourthwall.googlemembersapi.client.domain.GoogleYoutubeClient
 import org.openapitools.client.models.MemberListDto
 import org.openapitools.client.models.MembershipLevelListDto
 import org.springframework.http.MediaType
@@ -12,46 +13,46 @@ import org.springframework.web.bind.annotation.*
 @RequestMapping("/test", produces = [MediaType.APPLICATION_JSON_VALUE])
 class TestEndpoint {
 
-    val googleYoutubeApiUrl = "http://localhost/"
+    val googleYoutubeApiUrl = "https://www.googleapis.com/"
 
     @GetMapping("/listAllMembers")
-    fun listAllMembers(): ResponseEntity<MemberListDto> {
+    fun listAllMembers(): ResponseEntity<String> {
         val api = GoogleApiDomain.create(googleYoutubeApiUrl)
         val result = api.listAllMembers("snippet", 10)
-        return ResponseEntity.ok(result.getOrThrow())
+        return result.toResponseEntity()
     }
 
     @GetMapping("/checkUsersForTheirMemberships")
-    fun checkUsersForTheirMemberships(): ResponseEntity<MemberListDto> {
+    fun checkUsersForTheirMemberships(): ResponseEntity<String> {
         val api = GoogleApiDomain.create(googleYoutubeApiUrl)
         val result = api.checkUsersForTheirMemberships("snippet", "UC5IKUmQWDT6Fh9YL9lMRyHQ")
-        return ResponseEntity.ok(result.getOrThrow())
+        return result.toResponseEntity()
     }
 
     @GetMapping("/listMembersUpdates")
-    fun listMembersUpdates(): ResponseEntity<MemberListDto> {
+    fun listMembersUpdates(): ResponseEntity<String> {
         val api = GoogleApiDomain.create(googleYoutubeApiUrl)
         val result = api.listMembersUpdates("snippet", "updates")
-        return ResponseEntity.ok(result.getOrThrow())
+        return result.toResponseEntity()
     }
 
     @GetMapping("/listMembers")
-    fun listMembers(): ResponseEntity<MemberListDto> {
+    fun listMembers(): ResponseEntity<String> {
         val api = GoogleApiDomain.create(googleYoutubeApiUrl)
         val result = api.listMembers("snippet", 10,"", "", "", "")
-        return ResponseEntity.ok(result.getOrThrow())
+        return result.toResponseEntity()
     }
 
     @GetMapping("/listAllPricingLevels")
-    fun listAllPricingLevels(): ResponseEntity<MembershipLevelListDto> {
+    fun listAllPricingLevels(): ResponseEntity<String> {
         val api = GoogleApiDomain.create(googleYoutubeApiUrl)
         val result = api.listAllPricingLevels("id")
-        return ResponseEntity.ok(result.getOrThrow())
+        return result.toResponseEntity()
     }
 
-    fun <A : Throwable, B> Either<A, B>.getOrThrow(): B =
+    fun <A : Throwable, B> Either<A, B>.toResponseEntity(): ResponseEntity<String> =
             when (this) {
-                is Either.Left -> throw this.a
-                is Either.Right -> this.b
+                is Either.Left -> ResponseEntity.badRequest().body(this.a.message)
+                is Either.Right -> ResponseEntity.ok(GoogleYoutubeClient.objectMapper.writeValueAsString(this.b))
             }
 }
