@@ -16,14 +16,34 @@ repositories {
 }
 
 dependencies {
-	implementation("org.springframework.boot:spring-boot-starter")
-	implementation("org.jetbrains.kotlin:kotlin-reflect")
-	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
+	//spring
+	implementation("org.springframework.boot:spring-boot-starter:2.3.1.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-web:2.3.1.RELEASE")
+
+	//kotlin
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
 	implementation("org.jetbrains.kotlin:kotlin-reflect:1.3.72")
+
+	//okhttp
 	implementation("com.squareup.moshi:moshi-kotlin:1.9.2")
 	implementation("com.squareup.moshi:moshi-adapters:1.9.2")
 	implementation("com.squareup.okhttp3:okhttp:4.2.2")
+
+	//arrow
+	implementation("io.arrow-kt:arrow-core-data:0.10.5")
+	implementation("io.arrow-kt:arrow-core:0.10.5")
+	implementation("io.arrow-kt:arrow-syntax:0.10.5")
+	implementation("io.arrow-kt:arrow-fx:0.10.5")
+
+	//retrofit
+	implementation("com.squareup.retrofit2:retrofit:2.6.2")
+	implementation("com.squareup.retrofit2:converter-moshi:2.6.2")
+	implementation("com.squareup.retrofit2:converter-scalars:2.6.2")
+
+	//jackson
+	implementation("com.fasterxml.jackson.core:jackson-core:2.11.0")
+	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0")
+
 	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.1.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
 		exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
