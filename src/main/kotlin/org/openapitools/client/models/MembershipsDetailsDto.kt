@@ -21,7 +21,7 @@ import com.squareup.moshi.Json
  * @param highestAccessibleLevelDisplayName 
  * @param membershipsDuration 
  * @param accessibleLevels 
- * @param membershipsDurationAtLevel 
+ * @param membershipsDurationAtLevels 
  */
 
 data class MembershipsDetailsDto (
@@ -33,7 +33,7 @@ data class MembershipsDetailsDto (
     val membershipsDuration: MembershipsDurationDto,
     @Json(name = "accessibleLevels")
     val accessibleLevels: kotlin.Array<kotlin.String>? = null,
-    @Json(name = "membershipsDurationAtLevel")
-    val membershipsDurationAtLevel: kotlin.Array<MembershipsDurationAtLevelDto>? = null
+    @Json(name = "membershipsDurationAtLevels")
+    val membershipsDurationAtLevels: kotlin.Array<MembershipsDurationAtLevelDto>? = null
 )
 

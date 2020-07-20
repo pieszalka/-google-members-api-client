@@ -1,8 +1,6 @@
 package com.fourthwall.googlemembersapi.client.domain
 
 import arrow.core.Either
-import com.fourthwall.manufacturer.printful.GoogleYoutubeMembersClient
-import com.fourthwall.manufacturer.printful.GoogleYoutubeMembershipsLevelsClient
 import org.openapitools.client.models.MemberListDto
 import org.openapitools.client.models.MembershipLevelListDto
 import org.slf4j.LoggerFactory

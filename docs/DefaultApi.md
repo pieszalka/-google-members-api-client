@@ -5,9 +5,9 @@ All URIs are relative to *http://localhost*
 Method | HTTP request | Description
 ------------- | ------------- | -------------
 [**getYoutubeV3Members**](DefaultApi.md#getYoutubeV3Members) | **GET** /youtube/v3/members | 
-[**getYoutubeV3Members_0**](DefaultApi.md#getYoutubeV3Members_0) | **GET** /youtube/v3//members | 
-[**getYoutubeV3Members_1**](DefaultApi.md#getYoutubeV3Members_1) | **GET** /youtube/v3///members | 
-[**getYoutubeV3Members_2**](DefaultApi.md#getYoutubeV3Members_2) | **GET** /youtube/v3////members | 
+[**getYoutubeV3Members_0**](DefaultApi.md#getYoutubeV3Members_0) | **GET** //youtube/v3/members | 
+[**getYoutubeV3Members_1**](DefaultApi.md#getYoutubeV3Members_1) | **GET** ///youtube/v3/members | 
+[**getYoutubeV3Members_2**](DefaultApi.md#getYoutubeV3Members_2) | **GET** ////youtube/v3/members | 
 [**getYoutubeV3Membershipslevels**](DefaultApi.md#getYoutubeV3Membershipslevels) | **GET** /youtube/v3/membershipsLevels | 
 
 
@@ -42,7 +42,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **part** | **kotlin.String**|  |
+ **part** | **kotlin.String**|  | [enum: id, snippet]
  **maxResults** | **kotlin.Int**|  |
 
 ### Return type
@@ -91,7 +91,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **part** | **kotlin.String**|  |
+ **part** | **kotlin.String**|  | [enum: id, snippet]
  **filterByMemberChannelId** | **kotlin.String**|  |
 
 ### Return type
@@ -140,8 +140,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **part** | **kotlin.String**|  |
- **mode** | **kotlin.String**|  |
+ **part** | **kotlin.String**|  | [enum: id, snippet]
+ **mode** | **kotlin.String**|  | [enum: all_current, updates]
 
 ### Return type
 
@@ -193,10 +193,10 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **part** | **kotlin.String**|  |
+ **part** | **kotlin.String**|  | [enum: id, snippet]
  **maxResults** | **kotlin.Int**|  |
  **filterByMemberChannelId** | **kotlin.String**|  |
- **mode** | **kotlin.String**|  |
+ **mode** | **kotlin.String**|  | [enum: all_current, updates]
  **pageToken** | **kotlin.String**|  |
  **hasAccessToLevel** | **kotlin.String**|  |
 
@@ -228,7 +228,7 @@ Configure httpAuth:
 //import org.openapitools.client.models.*
 
 val apiInstance = DefaultApi()
-val part : kotlin.String = id // kotlin.String | 
+val part : kotlin.String = snippet // kotlin.String | 
 try {
     val result : MembershipLevelListDto = apiInstance.getYoutubeV3Membershipslevels(part)
     println(result)
@@ -245,7 +245,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **part** | **kotlin.String**|  |
+ **part** | **kotlin.String**|  | [enum: id, snippet]
 
 ### Return type
 

@@ -6,8 +6,8 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **kind** | **kotlin.String** |  | 
 **etag** | **kotlin.String** |  | 
-**nextPageToken** | **kotlin.String** |  | 
 **pageInfo** | [**PageInfoDto**](PageInfoDto.md) |  | 
+**nextPageToken** | **kotlin.String** |  |  [optional]
 **items** | [**kotlin.Array&lt;MemberDto&gt;**](MemberDto.md) |  |  [optional]
 
 

@@ -5,10 +5,10 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **reason** | **kotlin.String** |  | 
-**locationType** | **kotlin.String** |  | 
 **message** | **kotlin.String** |  | 
-**domain** | **kotlin.String** |  | 
-**location** | **kotlin.String** |  | 
+**locationType** | **kotlin.String** |  |  [optional]
+**domain** | **kotlin.String** |  |  [optional]
+**location** | **kotlin.String** |  |  [optional]
 
 
 

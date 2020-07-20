@@ -3,11 +3,11 @@ package com.fourthwall.googlemembersapi.client.rest
 import arrow.core.Either
 import com.fourthwall.googlemembersapi.client.domain.GoogleApiDomain
 import com.fourthwall.googlemembersapi.client.domain.GoogleYoutubeClient
-import org.openapitools.client.models.MemberListDto
-import org.openapitools.client.models.MembershipLevelListDto
 import org.springframework.http.MediaType
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.*
+import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/test", produces = [MediaType.APPLICATION_JSON_VALUE])
@@ -15,7 +15,7 @@ class TestEndpoint {
 
     val googleYoutubeApiUrl = "https://www.googleapis.com/"
     val token = ""
-    
+
     @GetMapping("/listAllMembers")
     fun listAllMembers(): ResponseEntity<String> {
         val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
@@ -40,7 +40,7 @@ class TestEndpoint {
     @GetMapping("/listMembers")
     fun listMembers(): ResponseEntity<String> {
         val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
-        val result = api.listMembers("snippet", 10,"", "", "", "")
+        val result = api.listMembers("snippet", 10,"UC5IKUmQWDT6Fh9YL9lMRyHQ", "all_current", "", "")
         return result.toResponseEntity()
     }
 

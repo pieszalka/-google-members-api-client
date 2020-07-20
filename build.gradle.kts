@@ -44,6 +44,8 @@ dependencies {
 	//jackson
 	implementation("com.fasterxml.jackson.core:jackson-core:2.11.0")
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0")
+	implementation("com.fasterxml.jackson.core:jackson-databind:2.11.0")
+	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.0")
 
 	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.1.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {

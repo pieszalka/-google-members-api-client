@@ -1,4 +1,4 @@
-package com.fourthwall.manufacturer.printful
+package com.fourthwall.googlemembersapi.client.domain
 
 import arrow.core.Either
 import arrow.core.right
@@ -14,7 +14,13 @@ class GoogleYoutubeMembershipsLevelsClient(private val api: DefaultApi) : Google
     override fun listAllPricingLevels(part: String): Either<Throwable, MembershipLevelListDto> {
         return api.getYoutubeV3Membershipslevels(part)
                 .asIO { it.right() }
-                .redeemWith({ mapException<MembershipLevelListDto>(it) }, { it.just().map { Either.right(it.body()!!) } })
+                .redeemWith({ mapException<MembershipLevelListDto>(it) }, { it.just().map {
+                    if (it.body() != null) {
+                        Either.right(it.body()!!)
+                    } else {
+                        mapError(it)
+                    }
+                } })
                 .unsafeRunSync()
     }
 

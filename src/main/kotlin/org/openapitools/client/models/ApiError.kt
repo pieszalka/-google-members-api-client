@@ -11,25 +11,16 @@
 */
 package org.openapitools.client.models
 
-import org.openapitools.client.models.MembershipLevelSnippetDto
+import org.openapitools.client.models.Error
 
 import com.squareup.moshi.Json
 /**
  * 
- * @param kind 
- * @param etag 
- * @param id 
- * @param snippet 
+ * @param error 
  */
 
-data class MembershipLevelDto (
-    @Json(name = "kind")
-    val kind: kotlin.String,
-    @Json(name = "etag")
-    val etag: kotlin.String,
-    @Json(name = "id")
-    val id: kotlin.String,
-    @Json(name = "snippet")
-    val snippet: MembershipLevelSnippetDto? = null
+data class ApiError (
+    @Json(name = "error")
+    val error: Error
 )
 

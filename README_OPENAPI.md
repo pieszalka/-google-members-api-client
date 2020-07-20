@@ -36,15 +36,16 @@ All URIs are relative to *http://localhost*
 Class | Method | HTTP request | Description
 ------------ | ------------- | ------------- | -------------
 *DefaultApi* | [**getYoutubeV3Members**](docs/DefaultApi.md#getyoutubev3members) | **GET** /youtube/v3/members | 
-*DefaultApi* | [**getYoutubeV3Members_0**](docs/DefaultApi.md#getyoutubev3members_0) | **GET** /youtube/v3//members | 
-*DefaultApi* | [**getYoutubeV3Members_1**](docs/DefaultApi.md#getyoutubev3members_1) | **GET** /youtube/v3///members | 
-*DefaultApi* | [**getYoutubeV3Members_2**](docs/DefaultApi.md#getyoutubev3members_2) | **GET** /youtube/v3////members | 
+*DefaultApi* | [**getYoutubeV3Members_0**](docs/DefaultApi.md#getyoutubev3members_0) | **GET** //youtube/v3/members | 
+*DefaultApi* | [**getYoutubeV3Members_1**](docs/DefaultApi.md#getyoutubev3members_1) | **GET** ///youtube/v3/members | 
+*DefaultApi* | [**getYoutubeV3Members_2**](docs/DefaultApi.md#getyoutubev3members_2) | **GET** ////youtube/v3/members | 
 *DefaultApi* | [**getYoutubeV3Membershipslevels**](docs/DefaultApi.md#getyoutubev3membershipslevels) | **GET** /youtube/v3/membershipsLevels | 
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
+ - [org.openapitools.client.models.ApiError](docs/ApiError.md)
  - [org.openapitools.client.models.Error](docs/Error.md)
  - [org.openapitools.client.models.ErrorDetails](docs/ErrorDetails.md)
  - [org.openapitools.client.models.Forbidden](docs/Forbidden.md)

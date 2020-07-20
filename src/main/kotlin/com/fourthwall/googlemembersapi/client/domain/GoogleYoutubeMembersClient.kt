@@ -1,11 +1,9 @@
-package com.fourthwall.manufacturer.printful
+package com.fourthwall.googlemembersapi.client.domain
 
 import arrow.core.Either
 import arrow.core.right
 import arrow.fx.extensions.io.applicative.just
 import com.fourthwall.googlemembersapi.client.support.asIO
-import com.fourthwall.googlemembersapi.client.domain.GoogleYoutubeClient
-import com.fourthwall.googlemembersapi.client.domain.GoogleYoutubeMembersApi
 import org.openapitools.client.apis.DefaultApi
 import org.openapitools.client.models.MemberListDto
 
@@ -25,27 +23,42 @@ class GoogleYoutubeMembersClient(private val api: DefaultApi) : GoogleYoutubeCli
     }
 
     override fun checkUsersForTheirMemberships(part: String, filterByMemberChannelId: String): Either<Throwable, MemberListDto> {
-        /*return api.checkUsersForTheirMemberships(part, filterByMemberChannelId)
+        return api.getYoutubeV3Members_0(part, filterByMemberChannelId)
                 .asIO { it.right() }
-                .redeemWith({ mapException<MemberListDto>(it) }, { it.just().map { Either.right(it.body()!!) } })
-                .unsafeRunSync()*/
-        TODO("not implemented")
+                .redeemWith({ mapException<MemberListDto>(it) }, { it.just().map {
+                    if (it.body() != null) {
+                        Either.right(it.body()!!)
+                    } else {
+                        mapError(it)
+                    }
+                } })
+                .unsafeRunSync()
     }
 
     override fun listMembersUpdates(part: String, mode: String): Either<Throwable, MemberListDto> {
-        /*return api.listMembersUpdates(part, mode)
+        return api.getYoutubeV3Members_1(part, mode)
                 .asIO { it.right() }
-                .redeemWith({ mapException<MemberListDto>(it) }, { it.just().map { Either.right(it.body()!!) } })
-                .unsafeRunSync()*/
-        TODO("not implemented")
+                .redeemWith({ mapException<MemberListDto>(it) }, { it.just().map {
+                    if (it.body() != null) {
+                        Either.right(it.body()!!)
+                    } else {
+                        mapError(it)
+                    }
+                } })
+                .unsafeRunSync()
     }
 
     override fun listMembers(part: String, maxResults: Int, filterByMemberChannelId: String, mode: String, pageToken: String, hasAccessToLevel: String): Either<Throwable, MemberListDto> {
-        /*return api.listMembers(part, maxResults, filterByMemberChannelId, mode, pageToken, hasAccessToLevel)
+        return api.getYoutubeV3Members_2(part, maxResults, filterByMemberChannelId, mode, pageToken, hasAccessToLevel)
                 .asIO { it.right() }
-                .redeemWith({ mapException<MemberListDto>(it) }, { it.just().map { Either.right(it.body()!!) } })
-                .unsafeRunSync()*/
-        TODO("not implemented")
+                .redeemWith({ mapException<MemberListDto>(it) }, { it.just().map {
+                    if (it.body() != null) {
+                        Either.right(it.body()!!)
+                    } else {
+                        mapError(it)
+                    }
+                } })
+                .unsafeRunSync()
     }
 
     companion object {

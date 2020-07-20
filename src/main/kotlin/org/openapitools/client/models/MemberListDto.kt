@@ -19,8 +19,8 @@ import com.squareup.moshi.Json
  * 
  * @param kind 
  * @param etag 
- * @param nextPageToken 
  * @param pageInfo 
+ * @param nextPageToken 
  * @param items 
  */
 
@@ -29,10 +29,10 @@ data class MemberListDto (
     val kind: kotlin.String,
     @Json(name = "etag")
     val etag: kotlin.String,
-    @Json(name = "nextPageToken")
-    val nextPageToken: kotlin.String,
     @Json(name = "pageInfo")
     val pageInfo: PageInfoDto,
+    @Json(name = "nextPageToken")
+    val nextPageToken: kotlin.String? = null,
     @Json(name = "items")
     val items: kotlin.Array<MemberDto>? = null
 )

@@ -16,8 +16,8 @@ import com.squareup.moshi.Json
 /**
  * 
  * @param reason 
- * @param locationType 
  * @param message 
+ * @param locationType 
  * @param domain 
  * @param location 
  */
@@ -25,13 +25,13 @@ import com.squareup.moshi.Json
 data class ErrorDetails (
     @Json(name = "reason")
     val reason: kotlin.String,
-    @Json(name = "locationType")
-    val locationType: kotlin.String?,
     @Json(name = "message")
     val message: kotlin.String,
+    @Json(name = "locationType")
+    val locationType: kotlin.String? = null,
     @Json(name = "domain")
-    val domain: kotlin.String?,
+    val domain: kotlin.String? = null,
     @Json(name = "location")
-    val location: kotlin.String?
+    val location: kotlin.String? = null
 )
 
