@@ -51,18 +51,19 @@ open class GoogleYoutubeClient {
                 .configure(DeserializationFeature.ADJUST_DATES_TO_CONTEXT_TIME_ZONE, false)
                 .configure(SerializationFeature.WRITE_DATES_AS_TIMESTAMPS, false)
 
-        fun createGoogleYoutubeClient(
+        fun <S> createGoogleYoutubeClient(
                 googleYoutubeApiUrl: String,
                 token: String,
+                serviceClass: Class<S>,
                 customize: (OkHttpClient.Builder) -> OkHttpClient.Builder = { it }
-        ): DefaultApi {
+        ): S {
             val okHttp = customize(OkHttpClient
                     .Builder()
                     .addInterceptor(AccessTokenInterceptor(token))
                     .addInterceptor(HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY)))
                     .build()
             return ApiClient(baseUrl = googleYoutubeApiUrl, okHttpClient = okHttp)
-                    .createService(DefaultApi::class.java)
+                    .createService(serviceClass)
         }
     }
 }

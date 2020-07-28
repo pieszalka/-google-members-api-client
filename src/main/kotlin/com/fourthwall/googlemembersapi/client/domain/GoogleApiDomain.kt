@@ -1,14 +1,15 @@
 package com.fourthwall.googlemembersapi.client.domain
 
 import arrow.core.Either
+import com.fourthwall.googlemembersapi.client.domain.model.ChannelListDto
+import com.fourthwall.googlemembersapi.client.domain.model.ProfileDto
 import org.openapitools.client.models.MemberListDto
 import org.openapitools.client.models.MembershipLevelListDto
 import org.slf4j.LoggerFactory
 
-interface GoogleApi : GoogleYoutubeMembersApi, GoogleYoutubeMembershipsLevelsApi
+interface GoogleApi : GoogleYoutubeMembersApi, GoogleYoutubeMembershipsLevelsApi, GoogleYoutubeDataApi, GoogleProfileDataApi
 
 interface GoogleYoutubeMembersApi {
-
     fun listAllMembers(part: String, maxResults: Int): Either<Throwable, MemberListDto>
     fun checkUsersForTheirMemberships(part: String, filterByMemberChannelId: String): Either<Throwable, MemberListDto>
     fun listMembersUpdates(part: String, mode: String): Either<Throwable, MemberListDto>
@@ -16,13 +17,23 @@ interface GoogleYoutubeMembersApi {
 }
 
 interface GoogleYoutubeMembershipsLevelsApi {
-
     fun listAllPricingLevels(part: String): Either<Throwable, MembershipLevelListDto>
+}
+
+interface GoogleYoutubeDataApi {
+    fun getChannelInfo(): Either<Throwable, ChannelListDto>
+}
+
+interface GoogleProfileDataApi {
+    fun getUserInfo(): Either<Throwable, ProfileDto>
 }
 
 open class GoogleApiDomain(
         private val membersApi: GoogleYoutubeMembersApi,
-        private val membershipsLevelsApi: GoogleYoutubeMembershipsLevelsApi
+        private val membershipsLevelsApi: GoogleYoutubeMembershipsLevelsApi,
+        private val youtubeApi: GoogleYoutubeDataApi,
+        private val profileAPi: GoogleProfileDataApi
+
 ) : GoogleApi {
 
     private val logger = LoggerFactory.getLogger(this::class.java.name.substringBefore("\$Companion"))
@@ -52,11 +63,23 @@ open class GoogleApiDomain(
         return membershipsLevelsApi.listAllPricingLevels(part)
     }
 
+    override fun getChannelInfo(): Either<Throwable, ChannelListDto> {
+        logger.info("get channel info")
+        return youtubeApi.getChannelInfo()
+    }
+
+    override fun getUserInfo(): Either<Throwable, ProfileDto> {
+        logger.info("get user info")
+        return profileAPi.getUserInfo()
+    }
+
     companion object {
         fun create(googleYoutubeApiUrl: String, token: String): GoogleApiDomain {
             return GoogleApiDomain(
                     GoogleYoutubeMembersClient.create(googleYoutubeApiUrl, token),
-                    GoogleYoutubeMembershipsLevelsClient.create(googleYoutubeApiUrl, token)
+                    GoogleYoutubeMembershipsLevelsClient.create(googleYoutubeApiUrl, token),
+                    GoogleYoutubeDataClient.create(googleYoutubeApiUrl, token),
+                    GoogleProfileDataClient.create(googleYoutubeApiUrl, token)
             )
         }
     }

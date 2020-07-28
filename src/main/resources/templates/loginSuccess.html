@@ -1,0 +1,50 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Login Success</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+</head>
+<body>
+<h3>
+<div class="label label-info">
+   Welcome, <span th:text="${name}">user</span>!
+   </div>
+   </h3>
+</br>
+
+<div class="container">
+    <div class="col-sm-6 well">
+        <h3>Your channels:</h3>
+        <div th:text="${channels}"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-sm-6 well">
+        <h3>Your channels members:</h3>
+        <div th:text="${members}"></div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="col-sm-6 well">
+        <h3>You have joined memberships for channels:</h3>
+        <div th:text="${memberships}"></div>
+<form action="#" th:action="@{/saveEmail}" method="post">
+    <div class="form-group">
+        <label for="email">Email address</label>
+    <input class="form-control" name="email" type="text" aria-describedby="emailHelp" placeholder="enter email" th:value="${email}"/>
+        <small id="emailHelp" class="form-text text-muted">Put email to be able to receive creator content from those channels.</small>
+    <input name="identity" type="hidden" th:value="${identity}" />
+        <input name="memberships" type="hidden" th:value="${memberships}" />
+    </br>
+    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+    </div>
+</form>
+    </div>
+</div>
+
+</body>
+</html>

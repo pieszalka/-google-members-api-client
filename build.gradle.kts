@@ -19,6 +19,10 @@ dependencies {
 	//spring
 	implementation("org.springframework.boot:spring-boot-starter:2.3.1.RELEASE")
 	implementation("org.springframework.boot:spring-boot-starter-web:2.3.1.RELEASE")
+	implementation("org.springframework.security:spring-security-oauth2-client:5.3.3.RELEASE")
+	implementation("org.springframework.security:spring-security-oauth2-jose:5.3.3.RELEASE")
+	implementation("org.springframework.security:spring-security-web:5.3.3.RELEASE")
+	implementation("org.springframework.security:spring-security-config:5.3.3.RELEASE")
 
 	//kotlin
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.72")
@@ -46,6 +50,9 @@ dependencies {
 	implementation("com.fasterxml.jackson.module:jackson-module-kotlin:2.11.0")
 	implementation("com.fasterxml.jackson.core:jackson-databind:2.11.0")
 	implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.11.0")
+
+	//frontend
+	implementation("org.thymeleaf:thymeleaf-spring5:3.0.11.RELEASE")
 
 	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.1.0")
 	testImplementation("org.springframework.boot:spring-boot-starter-test") {
