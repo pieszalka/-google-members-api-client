@@ -1,50 +1,706 @@
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Login Success</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link rel="stylesheet"
-	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
-</head>
-<body>
-<h3>
-<div class="label label-info">
-   Welcome, <span th:text="${name}">user</span>!
-   </div>
-   </h3>
-</br>
 
-<div class="container">
-    <div class="col-sm-6 well">
-        <h3>Your channels:</h3>
-        <div th:text="${channels}"></div>
-    </div>
+<!DOCTYPE html>
+<html lang="en_US">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width,initial-scale=1" name="viewport" />
+    <meta content="" name="theme-color" />
+    <link rel="canonical" href="https://yt-memberships-demo-shop.fourthwall.com/loginSuccess?preview" />
+
+    <title>YT Members - Thank You</title>
+
+    
+
+
+
+<meta name="description" content="The official website and store of YT Memberships Demo. Find the latest content, buy merch, and support your favorite creator." />
+<meta property="og:site_name" content="YT Memberships Demo">
+<meta property="og:url" content="https://yt-memberships-demo-shop.fourthwall.com/loginSuccess?preview">
+<meta property="og:title" content="YT Members - Thank You">
+<meta property="og:type" content="website">
+<meta property="og:description" content="The official website and store of YT Memberships Demo. Find the latest content, buy merch, and support your favorite creator.">
+
+
+
+
+  
+        <meta property="og:image" content="https://cdn.staging.fourthwall.com/offer/sh_b444bde4-f6fd-4fc8-a022-d6d414c08bf5/fbd41e64-3df1-4577-8b67-39bcd2834d84.jpeg">
+        <meta property="og:image:secure_url" content="https://cdn.staging.fourthwall.com/offer/sh_b444bde4-f6fd-4fc8-a022-d6d414c08bf5/fbd41e64-3df1-4577-8b67-39bcd2834d84.jpeg">
+        <meta property="twitter:image" content="https://cdn.staging.fourthwall.com/offer/sh_b444bde4-f6fd-4fc8-a022-d6d414c08bf5/fbd41e64-3df1-4577-8b67-39bcd2834d84.jpeg">
+      
+
+
+
+  <meta name="twitter:site" content="@ytcreators">
+  <meta name="twitter:creator" content="@ytcreators">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="YT Members - Thank You">
+<meta name="twitter:description" content="The official website and store of YT Memberships Demo. Find the latest content, buy merch, and support your favorite creator.">
+    
+    <link rel="shortcut icon" href="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/favicon.png" sizes="32x32" type="image/png" />
+<link rel="shortcut icon" href="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/favicon.png" sizes="16x16" type="image/png" />
+
+<link rel="apple-touch-icon" href="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/apple-touch-icon.png?v=91e6b436-f5ef-cc42-d196-f2f1e5308299" sizes="180x180" />
+
+<meta content="#ffffff" name="msapplication-TileColor" />
+<meta content="#ffffff" name="theme-color" />
+<meta content="1.0.0" name="version" />
+
+
+    <link rel="stylesheet" type="text/css" href="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/vendor.css?v=3d197c51-2cbe-947a-c3fc-941cbade0cca" media="all" />
+
+    <link rel="stylesheet" type="text/css" href="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/styles/theme.scss.css?v=2766bad4-3cc1-0062-3007-ceeb03d6a811" media="all" />
+  
+    <script>
+      var fourthwallTheme = {
+        strings: {
+          addToCart: "Add to Cart",
+          viewCart: "View Cart",
+          checkout: "Checkout",
+          outOfStock: "Out of Stock",
+          unavailable: "Not Available",
+          soldOut: "Sold Out",
+          soldOutSuffix: " - SOLD OUT",
+          missingQuantityError: "Please choose the quantity.",
+          item: "item",
+          items: "items",
+          startShopping: "Start Shopping",
+          subtotal: "Subtotal",
+          backToShopping: "Back to Shopping",
+          cart: {
+            heading: "in your cart for",
+            emptyHeading: "Your Shopping Cart is Empty",
+            tableHeader: {
+              item: "Item",
+              quantity: "Quantity",
+              price: "Price"
+            }
+          }
+        },
+        urls: {
+          cart: "https://yt-memberships-demo-shop.fourthwall.com/cart",
+          allProducts: "https://yt-memberships-demo-shop.fourthwall.com/collections/all",
+        }
+      };
+    </script>
+  </head>
+  <body class="body">
+    <!-- ie info bar -->
+<div class="browser-ie11" style="display: none">
+  Your current browser is not supported. Please
+  <a href="https://browsehappy.com/" target="_blank" rel="nofollow" nofollow
+    >upgrade to a newer one</a
+  >
+  to improve your experience with this site
 </div>
 
-<div class="container">
-    <div class="col-sm-6 well">
-        <h3>Your channels members:</h3>
-        <div th:text="${members}"></div>
+<!-- ie 11 polyfills -->
+<!-- TODO: Move to external JS file -->
+<script type="text/javascript">
+  if (/MSIE \d|Trident.*rv:/.test(navigator.userAgent)) {
+    document.write(
+      '<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.min.js"><\/script>'
+    );
+    document.write(
+      '<script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.6.9/core.min.js"><\/script>'
+    );
+    document.write(
+      '<script src="https://cdn.polyfill.io/v2/polyfill.min.js"><\/script>'
+    );
+
+    // show info bar
+    document.querySelector(".browser-ie11").style.display = "block";
+
+    // createEvent polyfill
+    (function() {
+      if (typeof window.CustomEvent === "function") return false;
+
+      function CustomEvent(event, params) {
+        params = params || {
+          bubbles: false,
+          cancelable: false,
+          detail: undefined
+        };
+        var evt = document.createEvent("CustomEvent");
+        evt.initCustomEvent(
+          event,
+          params.bubbles,
+          params.cancelable,
+          params.detail
+        );
+        return evt;
+      }
+
+      CustomEvent.prototype = window.Event.prototype;
+      window.CustomEvent = CustomEvent;
+    })();
+  }
+</script> 
+    
+    <div class="page">
+      <div class="page__header">
+        <div id="shopify-section-header" class="shopify-section">
+<div class="header">
+  <div class="container wrapper">
+    <div class="header__sections">
+      <div class="header__section header__section--left">
+        <button 
+          data-drawer-trigger="mobile-menu" 
+          class="header__icon header__icon--hamburger"
+        >
+          <svg width="18" height="16" viewBox="0 0 16 14" xmlns="http://www.w3.org/2000/svg">
+  <path d="M1 0h14a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0 6h14a1 1 0 0 1 0 2H1a1 1 0 1 1 0-2zm0 6h14a1 1 0 0 1 0 2H1a1 1 0 0 1 0-2z" fill-rule="evenodd"/>
+</svg>
+
+        </button>
+      </div>
+
+      <div class="header__section header__section--middle">
+        <div class="header__logo">
+          <a 
+            href="https://yt-memberships-demo-shop.fourthwall.com/" 
+            title="YT Memberships Demo"
+            class="header__logo-link"
+          >
+            
+
+
+  <img 
+    src="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png"
+    srcset="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png 1x, https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png 2x"
+    alt="YT Memberships Demo"
+    class="header__logo-image"
+    itemprop="logo"
+  >
+
+          </a>
+        </div>
+      </div>
+
+      <div class="header__section header__section--right">
+        <ul class="header__list">
+          <li class="header__list-item">
+            <a 
+              href="https://yt-memberships-demo-shop.fourthwall.com/cart"
+              title="Cart" 
+              class="header__icon header__icon--cart"
+            >
+              <div 
+  data-cart-widget="widget"
+  class="cart-widget empty"
+>
+  <span data-cart-widget="quantity" class="cart-widget__items"></span>
+  <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16.875 6.5H13.875L9.5475 0.725C9.49432 0.655979 9.42622 0.599885 9.34829 0.56092C9.27036 0.521955 9.18462 0.501128 9.0975 0.5H8.9025C8.81538 0.501128 8.72964 0.521955 8.65171 0.56092C8.57378 0.599885 8.50568 0.655979 8.4525 0.725L4.125 6.5H1.125C1.02554 6.5 0.930161 6.53951 0.859835 6.60983C0.789509 6.68016 0.75 6.77554 0.75 6.875V7.625C0.75 7.72446 0.789509 7.81984 0.859835 7.89017C0.930161 7.96049 1.02554 8 1.125 8H1.5L2.7825 13.7375C2.89232 14.2325 3.16615 14.676 3.55958 14.9959C3.95301 15.3158 4.44296 15.4934 4.95 15.5H13.05C13.5609 15.4985 14.0561 15.3232 14.4541 15.0029C14.8522 14.6825 15.1293 14.2363 15.24 13.7375L16.5 8H16.8525C16.952 8 17.0473 7.96049 17.1177 7.89017C17.188 7.81984 17.2275 7.72446 17.2275 7.625V6.875C17.2277 6.77932 17.1913 6.6872 17.1257 6.61748C17.0602 6.54777 16.9705 6.50574 16.875 6.5ZM6 6.5L9 2.5025L12 6.5H6Z"/>
+</svg>
+
+</div>
+            </a>
+          </li>
+        </ul>
+      </div>
     </div>
+  </div>
+</div>
 </div>
 
-<div class="container">
-    <div class="col-sm-6 well">
-        <h3>You have joined memberships for channels:</h3>
-        <div th:text="${memberships}"></div>
-<form action="#" th:action="@{/saveEmail}" method="post">
-    <div class="form-group">
-        <label for="email">Email address</label>
-    <input class="form-control" name="email" type="text" aria-describedby="emailHelp" placeholder="enter email" th:value="${email}"/>
-        <small id="emailHelp" class="form-text text-muted">Put email to be able to receive creator content from those channels.</small>
-    <input name="identity" type="hidden" th:value="${identity}" />
-        <input name="memberships" type="hidden" th:value="${memberships}" />
-    </br>
-    <button type="submit" name="submit" class="btn btn-primary">Submit</button>
+        <div id="shopify-section-mobile-menu" class="shopify-section">
+<aside 
+  data-drawer="mobile-menu" 
+  class="drawer drawer--fullwidth drawer--fade"
+>
+  <div 
+    data-drawer-trigger="mobile-menu" 
+    class="drawer__background"
+  ></div>
+
+  <div class="drawer__content">
+    <div class="drawer__content-inner">
+      <div class="mobile-menu">
+        <div class="mobile-menu__inner">
+          <div class="mobile-menu__section mobile-menu__section--main">
+            <div class="mobile-menu__header">
+              <div class="mobile-menu__header-item mobile-menu__header-item--close">
+                <button 
+                  data-drawer-trigger="mobile-menu" 
+                  class="mobile-menu__header-icon mobile-menu__header-icon--close"
+                >
+                  <svg width="17" height="17" viewBox="0 0 17 17" xmlns="http://www.w3.org/2000/svg">
+  <path d="M8.486 8.542L16.5 1 8.486 8.542.472 1l8.014 7.542zm0 0L.472 16.085l8.014-7.543 8.014 7.543-8.014-7.543z" stroke="currentColor" stroke-width="3" fill-rule="evenodd" stroke-linecap="square"/>
+</svg>
+
+                </button>
+              </div>
+
+              <div class="mobile-menu__header-item mobile-menu__header-item--logo">
+                <div class="mobile-menu__logo">
+                  <a 
+                    href="https://yt-memberships-demo-shop.fourthwall.com/" 
+                    title="YT Memberships Demo"
+                    class="mobile-menu__logo-link"
+                  >
+                    
+
+
+  <img 
+    src="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png"
+    srcset="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png 1x, https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png 2x"
+    alt="YT Memberships Demo"
+    class="mobile-menu__logo-image"
+    itemprop="logo"
+  >
+
+                  </a>
+                </div>
+              </div>
+              
+              <div class="mobile-menu__header-item mobile-menu__header-item--cart">
+                <a 
+                  href="https://yt-memberships-demo-shop.fourthwall.com/cart" 
+                  title="Cart"
+                  class="mobile-menu__header-icon mobile-menu__header-icon--cart"
+                >
+                  <div 
+  data-cart-widget="widget"
+  class="cart-widget empty"
+>
+  <span data-cart-widget="quantity" class="cart-widget__items"></span>
+  <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16.875 6.5H13.875L9.5475 0.725C9.49432 0.655979 9.42622 0.599885 9.34829 0.56092C9.27036 0.521955 9.18462 0.501128 9.0975 0.5H8.9025C8.81538 0.501128 8.72964 0.521955 8.65171 0.56092C8.57378 0.599885 8.50568 0.655979 8.4525 0.725L4.125 6.5H1.125C1.02554 6.5 0.930161 6.53951 0.859835 6.60983C0.789509 6.68016 0.75 6.77554 0.75 6.875V7.625C0.75 7.72446 0.789509 7.81984 0.859835 7.89017C0.930161 7.96049 1.02554 8 1.125 8H1.5L2.7825 13.7375C2.89232 14.2325 3.16615 14.676 3.55958 14.9959C3.95301 15.3158 4.44296 15.4934 4.95 15.5H13.05C13.5609 15.4985 14.0561 15.3232 14.4541 15.0029C14.8522 14.6825 15.1293 14.2363 15.24 13.7375L16.5 8H16.8525C16.952 8 17.0473 7.96049 17.1177 7.89017C17.188 7.81984 17.2275 7.72446 17.2275 7.625V6.875C17.2277 6.77932 17.1913 6.6872 17.1257 6.61748C17.0602 6.54777 16.9705 6.50574 16.875 6.5ZM6 6.5L9 2.5025L12 6.5H6Z"/>
+</svg>
+
+</div>
+                </a>
+              </div>
+            </div>
+
+            <div class="mobile-menu__navigation">
+              <ul class="list">
+                
+                  <li class="list__item">
+                    <a href="/" class="mobile-menu__link">
+                      Home
+                    </a>
+                  </li>
+                
+                  <li class="list__item">
+                    <a href="/collections/all" class="mobile-menu__link">
+                      Store
+                    </a>
+                  </li>
+                
+              </ul>
+            </div>
+          </div>
+
+          <div class="mobile-menu__spacer"></div>
+
+          <div class="mobile-menu__section mobile-menu__section--footer">
+            <div class="mobile-menu__footer">
+              
+                <div class="mobile-menu__footer-text">
+                  <p>Fourthwall is for Creators</p>
+                </div>
+              
+
+              
+                <ul class="mobile-menu__socials">
+                  
+
+  <li class="mobile-menu__social">
+    <a 
+      href="https://youtube.com/channel/UCkRfArvrzheW2E7b6SVT7vQ" 
+      target="_blank" 
+      class="mobile-menu__social-link"
+    >
+      
+      <svg width="24" height="17" viewBox="0 0 24 17" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20.062 0H3.938A3.944 3.944 0 0 0 0 3.939v9.121A3.944 3.944 0 0 0 3.938 17h16.125A3.944 3.944 0 0 0 24 13.06V3.939A3.944 3.944 0 0 0 20.062 0zm-3.524 8.531l-6.769 4.331a.504.504 0 0 1-.509.017.5.5 0 0 1-.26-.438V3.779a.502.502 0 0 1 .77-.422l6.769 4.332a.499.499 0 0 1-.001.842z" fill-rule="nonzero"/>
+</svg>
+
+    </a>
+  </li>
+
+
+  <li class="mobile-menu__social">
+    <a 
+      href="https://facebook.com/MSFTSREP" 
+      target="_blank" 
+      class="mobile-menu__social-link"
+    >
+      
+      <svg width="13" height="22" viewBox="0 0 13 22" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12.204 6.843H8.292V5.097c0-.822.544-1.013.927-1.013h2.74V.47L7.99.458c-3.6 0-4.282 2.693-4.282 4.419v1.965H.958v3.667h2.75v11h4.584v-11h3.53l.382-3.666z" fill-rule="evenodd"/>
+</svg>
+
+    </a>
+  </li>
+
+
+  <li class="mobile-menu__social">
+    <a 
+      href="https://twitter.com/ytcreators" 
+      target="_blank" 
+      class="mobile-menu__social-link"
+    >
+      
+      <svg width="21" height="17" viewBox="0 0 21 17" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20.49 2.431c-.746.333-1.375.344-2.041.015.86-.515.9-.877 1.21-1.85a8.344 8.344 0 0 1-2.646 1.011 4.166 4.166 0 0 0-7.098 3.8A11.822 11.822 0 0 1 1.33 1.054 4.165 4.165 0 0 0 2.62 6.615a4.15 4.15 0 0 1-1.886-.52v.052a4.168 4.168 0 0 0 3.342 4.085 4.194 4.194 0 0 1-1.882.072 4.172 4.172 0 0 0 3.891 2.892 8.376 8.376 0 0 1-6.167 1.725 11.793 11.793 0 0 0 6.385 1.87c7.662 0 11.85-6.346 11.85-11.85 0-.182-.002-.361-.01-.54.813-.587 1.79-1.134 2.348-1.97z" fill-rule="evenodd"/>
+</svg>
+
+    </a>
+  </li>
+
+                </ul>
+              
+
+              
+                <div class="mobile-menu__secondary-logo">
+                  
+                </div>
+              
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-</form>
+  </div>
+</aside>
+</div>
+      </div>
+      
+      <div class="page__sidebar">
+        <div id="shopify-section-sidebar" class="shopify-section">
+<aside class="sidebar">
+  <div class="sidebar__inner">
+    <div class="sidebar__section sidebar__section--main">
+      
+        <div class="sidebar__logo">
+      
+
+        <a 
+          href="https://yt-memberships-demo-shop.fourthwall.com/"
+          alt="YT Memberships Demo"
+          class="sidebar__logo-link"
+        >
+          
+
+
+  <img 
+    src="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png"
+    srcset="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png 1x, https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/logo.png 2x"
+    alt="YT Memberships Demo"
+    class="sidebar__logo-image"
+    itemprop="logo"
+  >
+
+        </a>
+
+      
+        </div>
+      
+
+      <nav class="sidebar__navigation">
+        <ul class="sidebar__list">
+          
+          
+            <li class="sidebar__list-item">
+              <a
+                href="https://yt-memberships-demo-shop.fourthwall.com/"
+                class="sidebar__navigation-link"
+              >Home</a>
+            </li>
+          
+            <li class="sidebar__list-item">
+              <a
+                href="https://yt-memberships-demo-shop.fourthwall.com/collections/all"
+                class="sidebar__navigation-link"
+              >Store</a>
+            </li>
+          
+        </ul>
+      </nav>
     </div>
+
+    <div class="sidebar__spacer"></div>
+
+    <div class="sidebar__section sidebar__section--footer">
+      <div class="sidebar__footer">
+        <div class="sidebar__footer-main">
+          
+            <div class="sidebar__footer-text">
+              <p>Fourthwall is for Creators</p>
+            </div>
+          
+
+          
+            <ul class="sidebar__socials">
+              
+
+  <li class="sidebar__social-item">
+    <a 
+      href="https://youtube.com/channel/UCkRfArvrzheW2E7b6SVT7vQ" 
+      target="_blank" 
+      class="sidebar__social-link"
+    >
+      
+      <svg width="24" height="17" viewBox="0 0 24 17" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20.062 0H3.938A3.944 3.944 0 0 0 0 3.939v9.121A3.944 3.944 0 0 0 3.938 17h16.125A3.944 3.944 0 0 0 24 13.06V3.939A3.944 3.944 0 0 0 20.062 0zm-3.524 8.531l-6.769 4.331a.504.504 0 0 1-.509.017.5.5 0 0 1-.26-.438V3.779a.502.502 0 0 1 .77-.422l6.769 4.332a.499.499 0 0 1-.001.842z" fill-rule="nonzero"/>
+</svg>
+
+    </a>
+  </li>
+
+
+  <li class="sidebar__social-item">
+    <a 
+      href="https://facebook.com/MSFTSREP" 
+      target="_blank" 
+      class="sidebar__social-link"
+    >
+      
+      <svg width="13" height="22" viewBox="0 0 13 22" xmlns="http://www.w3.org/2000/svg">
+  <path d="M12.204 6.843H8.292V5.097c0-.822.544-1.013.927-1.013h2.74V.47L7.99.458c-3.6 0-4.282 2.693-4.282 4.419v1.965H.958v3.667h2.75v11h4.584v-11h3.53l.382-3.666z" fill-rule="evenodd"/>
+</svg>
+
+    </a>
+  </li>
+
+
+  <li class="sidebar__social-item">
+    <a 
+      href="https://twitter.com/ytcreators" 
+      target="_blank" 
+      class="sidebar__social-link"
+    >
+      
+      <svg width="21" height="17" viewBox="0 0 21 17" xmlns="http://www.w3.org/2000/svg">
+  <path d="M20.49 2.431c-.746.333-1.375.344-2.041.015.86-.515.9-.877 1.21-1.85a8.344 8.344 0 0 1-2.646 1.011 4.166 4.166 0 0 0-7.098 3.8A11.822 11.822 0 0 1 1.33 1.054 4.165 4.165 0 0 0 2.62 6.615a4.15 4.15 0 0 1-1.886-.52v.052a4.168 4.168 0 0 0 3.342 4.085 4.194 4.194 0 0 1-1.882.072 4.172 4.172 0 0 0 3.891 2.892 8.376 8.376 0 0 1-6.167 1.725 11.793 11.793 0 0 0 6.385 1.87c7.662 0 11.85-6.346 11.85-11.85 0-.182-.002-.361-.01-.54.813-.587 1.79-1.134 2.348-1.97z" fill-rule="evenodd"/>
+</svg>
+
+    </a>
+  </li>
+
+            </ul>
+          
+        </div>
+        
+        
+          <div class="sidebar__secondary-logo">
+            
+          </div>
+        
+      </div>
+    </div>
+  </div>
+</aside>
+</div>
+      </div>
+
+      
+      <div class="page__main page__main--page">
+        
+          <div class="page__bar">
+            <div id="shopify-section-bar" class="shopify-section">
+<div class="bar bar--main">
+  <div class="wrapper">
+    <div class="bar__inner">
+      <div class="bar__cart-widget">
+        <a
+          href="https://yt-memberships-demo-shop.fourthwall.com/cart"
+          title="Cart"
+          class="bar__cart-link"
+        >
+          <div 
+  data-cart-widget="widget"
+  class="cart-widget empty"
+>
+  <span data-cart-widget="quantity" class="cart-widget__items"></span>
+  <svg width="18" height="16" viewBox="0 0 18 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <path d="M16.875 6.5H13.875L9.5475 0.725C9.49432 0.655979 9.42622 0.599885 9.34829 0.56092C9.27036 0.521955 9.18462 0.501128 9.0975 0.5H8.9025C8.81538 0.501128 8.72964 0.521955 8.65171 0.56092C8.57378 0.599885 8.50568 0.655979 8.4525 0.725L4.125 6.5H1.125C1.02554 6.5 0.930161 6.53951 0.859835 6.60983C0.789509 6.68016 0.75 6.77554 0.75 6.875V7.625C0.75 7.72446 0.789509 7.81984 0.859835 7.89017C0.930161 7.96049 1.02554 8 1.125 8H1.5L2.7825 13.7375C2.89232 14.2325 3.16615 14.676 3.55958 14.9959C3.95301 15.3158 4.44296 15.4934 4.95 15.5H13.05C13.5609 15.4985 14.0561 15.3232 14.4541 15.0029C14.8522 14.6825 15.1293 14.2363 15.24 13.7375L16.5 8H16.8525C16.952 8 17.0473 7.96049 17.1177 7.89017C17.188 7.81984 17.2275 7.72446 17.2275 7.625V6.875C17.2277 6.77932 17.1913 6.6872 17.1257 6.61748C17.0602 6.54777 16.9705 6.50574 16.875 6.5ZM6 6.5L9 2.5025L12 6.5H6Z"/>
+</svg>
+
+</div>
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+</div>
+        
+
+<div class="page__content">
+  <div class="main">
+    <div class="main__sections">
+      <div class="container container--md wrapper">
+          <div id="shopify-section-donate" class="shopify-section">
+             <section id="donate" class="donate donate--shopify-section-donate">
+                <div class="section-background"></div>
+                <div class="donate__inner">
+                   <div class="container container--10 wrapper">
+                      <div class="grid grid--middle">
+                         <div class="grid__column grid__column--12 grid__column--6@md">
+                            <div class="donate__info">
+                               <div class="donate__header">
+                                  <h3 class="donate__heading">Thank you!</h3>
+                               </div>
+                               <div class="donate__description">
+                                  <p>Your membership means the world to me! I wanted to personally thank you for supporting me in what I do.</p>
+                               </div>
+                            </div>
+                         </div>
+                         <div class="grid__column grid__column--12 grid__column--6@md">
+                            <div class="donate__form-container">
+                               <div class="donate-form">
+                                  <form action="#" th:action="@{/saveEmail}" method="post">
+                                     <div class="form__section">
+                                        <div data-input="container" class="input-field input-field--icon input-field--no-bottom-border-radius">
+                                           <div class="input-field__icon">
+                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                 <path d="M4.24999 4.25C4.24999 3.50832 4.46992 2.7833 4.88198 2.16661C5.29403 1.54993 5.8797 1.06928 6.56493 0.785453C7.25015 0.501625 8.00415 0.427362 8.73158 0.572057C9.45901 0.716751 10.1272 1.0739 10.6516 1.59835C11.1761 2.1228 11.5332 2.79098 11.6779 3.51841C11.8226 4.24584 11.7484 4.99984 11.4645 5.68506C11.1807 6.37029 10.7001 6.95596 10.0834 7.36801C9.46669 7.78007 8.74167 8 7.99999 8C7.00543 8 6.0516 7.60491 5.34834 6.90165C4.64508 6.19839 4.24999 5.24456 4.24999 4.25ZM15.4175 14.4125L14 11.57C13.6883 10.9479 13.2096 10.4248 12.6175 10.0592C12.0254 9.69365 11.3433 9.50002 10.6475 9.5H5.35249C4.65665 9.50002 3.97454 9.69365 3.38247 10.0592C2.7904 10.4248 2.31172 10.9479 1.99999 11.57L0.582489 14.4125C0.524956 14.5267 0.497565 14.6537 0.502916 14.7814C0.508266 14.9091 0.546182 15.0334 0.613061 15.1423C0.67994 15.2513 0.773563 15.3414 0.885038 15.404C0.996514 15.4666 1.12214 15.4996 1.24999 15.5H14.75C14.8778 15.4996 15.0035 15.4666 15.1149 15.404C15.2264 15.3414 15.32 15.2513 15.3869 15.1423C15.4538 15.0334 15.4917 14.9091 15.4971 14.7814C15.5024 14.6537 15.475 14.5267 15.4175 14.4125Z"/>
+                                              </svg>
+                                           </div>
+                                           <input 
+                                              id="donate-name"
+                                              name="name"
+                                              data-donate="name"
+                                              data-input="input"
+                                              class="input-field__input"
+                                              th:value="${name}"
+                                              required
+                                              >
+                                           <label 
+                                              for="donate-name" 
+                                              class="input-field__label"
+                                              >
+                                            Name or nickname
+                                           </label>
+                                        </div>
+                                        <div data-form-error="name" class="form__error"></div>
+                                     </div>
+                                     <div class="form__section form__section--space-s">
+                                        <div data-input="container" class="input-field input-field--icon input-field--textarea input-field--no-top-border-radius">
+                                           <div class="input-field__icon input-field__icon--shift-up">
+                                              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                                 <path d="M12.5 0.5H3.5C2.70435 0.5 1.94129 0.816071 1.37868 1.37868C0.816071 1.94129 0.5 2.70435 0.5 3.5V15.125C0.5 15.2245 0.539509 15.3198 0.609835 15.3902C0.680161 15.4605 0.775544 15.5 0.875 15.5C0.924048 15.4997 0.972542 15.4896 1.01763 15.4703C1.06271 15.451 1.10347 15.4228 1.1375 15.3875L3.3875 13.1375C3.60075 12.9299 3.85308 12.7666 4.12987 12.6572C4.40667 12.5478 4.70242 12.4943 5 12.5H12.5C13.2957 12.5 14.0587 12.1839 14.6213 11.6213C15.1839 11.0587 15.5 10.2957 15.5 9.5V3.5C15.5 2.70435 15.1839 1.94129 14.6213 1.37868C14.0587 0.816071 13.2957 0.5 12.5 0.5ZM5.75 6.875C5.75 6.97446 5.71049 7.06984 5.64017 7.14017C5.56984 7.21049 5.47446 7.25 5.375 7.25H4.625C4.52554 7.25 4.43016 7.21049 4.35984 7.14017C4.28951 7.06984 4.25 6.97446 4.25 6.875V6.125C4.25 6.02554 4.28951 5.93016 4.35984 5.85984C4.43016 5.78951 4.52554 5.75 4.625 5.75H5.375C5.47446 5.75 5.56984 5.78951 5.64017 5.85984C5.71049 5.93016 5.75 6.02554 5.75 6.125V6.875ZM8.75 6.875C8.75 6.97446 8.71049 7.06984 8.64017 7.14017C8.56984 7.21049 8.47446 7.25 8.375 7.25H7.625C7.52555 7.25 7.43016 7.21049 7.35984 7.14017C7.28951 7.06984 7.25 6.97446 7.25 6.875V6.125C7.25 6.02554 7.28951 5.93016 7.35984 5.85984C7.43016 5.78951 7.52555 5.75 7.625 5.75H8.375C8.47446 5.75 8.56984 5.78951 8.64017 5.85984C8.71049 5.93016 8.75 6.02554 8.75 6.125V6.875ZM11.75 6.875C11.75 6.97446 11.7105 7.06984 11.6402 7.14017C11.5698 7.21049 11.4745 7.25 11.375 7.25H10.625C10.5255 7.25 10.4302 7.21049 10.3598 7.14017C10.2895 7.06984 10.25 6.97446 10.25 6.875V6.125C10.25 6.02554 10.2895 5.93016 10.3598 5.85984C10.4302 5.78951 10.5255 5.75 10.625 5.75H11.375C11.4745 5.75 11.5698 5.78951 11.6402 5.85984C11.7105 5.93016 11.75 6.02554 11.75 6.125V6.875Z"/>
+                                              </svg>
+                                           </div>
+                                           <textarea 
+                                              id="donate-message"
+                                              name="message"
+                                              data-donate="message"
+                                              data-input="input"
+                                              rows="3"
+                                              class="input-field__input"
+                                              required
+                                              ></textarea>
+                                           <label 
+                                              for="donate-message" 
+                                              class="input-field__label"
+                                              >
+                                            Message (Optional):
+                                           </label>
+                                        </div>
+                                        <div data-form-error="message" class="form__error"></div>
+                                     </div>
+                                     <div class="form__section">
+                                        <input data-donate="amount" type="hidden" name="amount" value="" />
+                                        <input type="hidden" name="currency" value="USD" />
+                                        <button 
+                                           type="submit"
+                                           data-donate="submit"
+                                           class="button button--primary button--large button--expand"
+                                           >
+                                           Submit
+                                           <span class="button__spinner">
+                                              <div class="spinner spinner--small spinner--light"></div>
+                                           </span>
+                                        </button>
+                                     </div>
+                                     <div class="form__response-container">
+                                        <div
+                                           data-form="response-success" 
+                                           class="form__response form__response--success"
+                                           >
+                                           Thanks!
+                                        </div>
+                                        <div 
+                                           data-form="response-error"
+                                           class="form__response form__response--error"
+                                           >
+                                           Something went wrong. Please try again later or contact the site administrator.
+                                        </div>
+                                     </div>
+                                     <input name="email" type="hidden" th:value="${email}"/>
+                                    <input name="identity" type="hidden" th:value="${identity}" />
+                                    <input name="memberships" type="hidden" th:value="${memberships}" />
+                                  </form>
+                                  <div>
+                                    <p style="color: white;">[DEBUG] Your channels members:</p>
+                                    <div style="color: white;" th:text="${members}"></div>  
+                                    <p style="color: white;">[DEBUG] You have joined memberships for channels:</p>
+                                    <div style="color: white;" th:text="${memberships}"></div>
+                                  </div>
+                               </div>
+                            </div>
+                         </div>
+                      </div>
+                   </div>
+                </div>
+             </section>
+          </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-</body>
+        <div class="page__footer">
+          <div id="shopify-section-footer" class="shopify-section">
+<div class="footer">
+  <div class="container wrapper">
+    <div class="footer__inner">
+      <div class="grid">
+        <div class="grid__column grid__column--12 grid__column--6@sm">
+          <div class="footer__section footer__section--left">
+            <div class="footer__copyright-wrapper">
+              <span class="footer__copyright">&copy; 2020 YT Memberships Demo</span>
+
+              
+            </div>
+          </div>
+        </div>
+
+        <div class="grid__column grid__column--12 grid__column--6@sm">
+          <div class="footer__section footer__section--right">
+            <nav class="footer__nav">
+              <ul class="footer__list footer__list--menu">
+                
+                  <li class="footer__list-item">
+                    <a href="mailto:contact+ytmembershipsdemo@fourthwall.com" class="footer__menu-link">Contact us</a>
+                  </li>
+                
+
+                
+                  <li class="footer__list-item">
+                    <a href="https://yt-memberships-demo-shop.fourthwall.com/privacy-policy" class="footer__menu-link">Privacy Policy</a>
+                  </li>
+                
+              </ul>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://themes.fourthwall.com/themes/assets/8cc84cc3-ca5d-4275-956d-10f1a2524162/assets/theme.js?v=257426ed-9aeb-60bb-c99b-8abf59a1b244"></script>
+  </body>
 </html>
