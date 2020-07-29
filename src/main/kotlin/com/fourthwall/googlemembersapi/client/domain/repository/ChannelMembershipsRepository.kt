@@ -9,7 +9,7 @@ class ChannelMembershipsRepository {
     private val memberships: HashMap<String, List<String>> = HashMap()
 
     fun saveMemberships(creatorChannelId: String, membershipsChannels: List<String>): Unit {
-        memberships.put(creatorChannelId, membershipsChannels + listOf("UCRCdW-1QUxIe6vJDII1WPiw")) //my test user channel id
+        memberships.put(creatorChannelId, membershipsChannels)
     }
 
     fun getSubscribedChannels(subscriberChannels: List<String>): List<String> {

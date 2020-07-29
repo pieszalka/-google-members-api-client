@@ -3,6 +3,7 @@ package com.fourthwall.googlemembersapi.client.domain
 import arrow.core.Either
 import com.fourthwall.googlemembersapi.client.domain.model.ChannelListDto
 import com.fourthwall.googlemembersapi.client.domain.model.ProfileDto
+import com.fourthwall.googlemembersapi.client.domain.model.RefreshTokenDto
 import org.openapitools.client.models.MemberListDto
 import org.openapitools.client.models.MembershipLevelListDto
 import org.slf4j.LoggerFactory
@@ -26,6 +27,7 @@ interface GoogleYoutubeDataApi {
 
 interface GoogleProfileDataApi {
     fun getUserInfo(): Either<Throwable, ProfileDto>
+    fun refreshToken(clientId: String, clientSecret: String, refreshToken: String): Either<Throwable, RefreshTokenDto>
 }
 
 open class GoogleApiDomain(
@@ -71,6 +73,11 @@ open class GoogleApiDomain(
     override fun getUserInfo(): Either<Throwable, ProfileDto> {
         logger.info("get user info")
         return profileAPi.getUserInfo()
+    }
+
+    override fun refreshToken(clientId: String, clientSecret: String, refreshToken: String): Either<Throwable, RefreshTokenDto> {
+        logger.info("refresh token")
+        return profileAPi.refreshToken(clientId, clientSecret, refreshToken)
     }
 
     companion object {

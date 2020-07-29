@@ -8,13 +8,15 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.oauth2.client.endpoint.DefaultAuthorizationCodeTokenResponseClient
 import org.springframework.security.oauth2.client.endpoint.OAuth2AccessTokenResponseClient
 import org.springframework.security.oauth2.client.endpoint.OAuth2AuthorizationCodeGrantRequest
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository
 import org.springframework.security.oauth2.client.web.AuthorizationRequestRepository
 import org.springframework.security.oauth2.client.web.HttpSessionOAuth2AuthorizationRequestRepository
 import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequest
 
+
 @Configuration
 @PropertySource("application-oauth2.properties")
-class SecurityConfig : WebSecurityConfigurerAdapter() {
+class SecurityConfig(val clientRegistrationRepository: ClientRegistrationRepository) : WebSecurityConfigurerAdapter() {
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {
         http.authorizeRequests()
@@ -26,6 +28,7 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
                 .oauth2Login()
                 .loginPage("/login")
                 .authorizationEndpoint()
+                .authorizationRequestResolver( CustomAuthorizationRequestResolver(clientRegistrationRepository,"/oauth2/authorize-client"))
                 .baseUri("/oauth2/authorize-client")
                 .authorizationRequestRepository(authorizationRequestRepository())
                 .and()
@@ -47,4 +50,9 @@ class SecurityConfig : WebSecurityConfigurerAdapter() {
         val accessTokenResponseClient = DefaultAuthorizationCodeTokenResponseClient();
         return accessTokenResponseClient;
     }
+
+
 }
+
+
+

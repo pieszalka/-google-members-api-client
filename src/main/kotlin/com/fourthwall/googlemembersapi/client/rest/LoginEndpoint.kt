@@ -2,10 +2,7 @@ package com.fourthwall.googlemembersapi.client.rest
 
 import arrow.core.Either
 import com.fourthwall.googlemembersapi.client.domain.GoogleApiDomain
-import com.fourthwall.googlemembersapi.client.domain.repository.ChannelMembershipsRepository
-import com.fourthwall.googlemembersapi.client.domain.repository.MembersSubscriptionsRepository
-import com.fourthwall.googlemembersapi.client.domain.repository.Subscription
-import org.springframework.beans.factory.annotation.Autowired
+import com.fourthwall.googlemembersapi.client.domain.repository.*
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService
 import org.springframework.security.oauth2.client.authentication.OAuth2AuthenticationToken
@@ -23,24 +20,21 @@ import java.util.function.Consumer
 @Controller
 class LoginEndpoint(
         val membersSubscriptionsRepository: MembersSubscriptionsRepository,
-        val channelMembershipsRepository: ChannelMembershipsRepository
+        val channelMembershipsRepository: ChannelMembershipsRepository,
+        val tokensRepository: CreatorsTokensRepository,
+        val clientRegistrationRepository: ClientRegistrationRepository,
+        val authorizedClientService: OAuth2AuthorizedClientService
 ) {
     val authorizationRequestBaseUri = "oauth2/authorize-client"
     val googleYoutubeApiUrl = "https://www.googleapis.com/"
 
-
-    @Autowired
-    private val clientRegistrationRepository: ClientRegistrationRepository? = null
-
-    @Autowired
-    private val authorizedClientService: OAuth2AuthorizedClientService? = null
-
     @GetMapping("/login")
-    fun getLoginPage(model: Model): String {
+    fun getLoginCreatorPage(model: Model): String {
         val clientRegistrations =  clientRegistrationRepository as Iterable<ClientRegistration>
         val oauth2AuthenticationUrls: HashMap<String, String> = HashMap()
         clientRegistrations.forEach(Consumer { registration: ClientRegistration ->
-            oauth2AuthenticationUrls[registration.clientName] = authorizationRequestBaseUri + "/" + registration.registrationId
+            oauth2AuthenticationUrls[registration.clientName + " login for creator"] = authorizationRequestBaseUri + "/" + registration.registrationId + "?type=creator"
+            oauth2AuthenticationUrls[registration.clientName + " login for supporter"] = authorizationRequestBaseUri + "/" + registration.registrationId + "?type=supporter"
         })
         model.addAttribute("urls", oauth2AuthenticationUrls)
         return "login"
@@ -48,30 +42,39 @@ class LoginEndpoint(
 
     @GetMapping("/loginSuccess")
     fun getLoginInfo(model: Model, authentication: OAuth2AuthenticationToken): String? {
-        val client: OAuth2AuthorizedClient = authorizedClientService!!.loadAuthorizedClient(authentication.authorizedClientRegistrationId, authentication.name)
+        val client: OAuth2AuthorizedClient = authorizedClientService.loadAuthorizedClient(authentication.authorizedClientRegistrationId, authentication.name)
         val token = client.accessToken.tokenValue
         val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
 
-        val profile = api.getUserInfo().toModel()!!
-        val channels = api.getChannelInfo().toModel()
-        val members = api.listAllMembers("snippet", 1000).toModel()
+        val members = api.listAllMembers("snippet", 100).toModel()
+        if (members != null) {
+            //creator flow
+            val profile = api.getUserInfo().toModel()!!
+            members.items
+                    ?.map { Pair(it.snippet.creatorChannelId, it.snippet.memberDetails.channelId) }
+                    ?.groupBy { it.first }
+                    ?.forEach { (creatorChannelId, channels) -> channelMembershipsRepository.saveMemberships(creatorChannelId, channels.map { it.second }) }
+            tokensRepository.saveToken(Token(token, client.refreshToken?.tokenValue ?: ""))
 
-        val profileChannels = channels?.items?.map { it.id }?.toList() ?: emptyList()
-        val membersChannels = members?.items?.map { it.snippet.memberDetails.channelId }?.toList() ?: emptyList()
-        members?.items
-            ?.map { Pair(it.snippet.creatorChannelId, it.snippet.memberDetails.channelId) }
-            ?.groupBy { it.first }
-            ?.forEach { (creatorChannelId, channels) -> channelMembershipsRepository.saveMemberships(creatorChannelId, channels.map { it.second })}
-        val memberships = channelMembershipsRepository.getSubscribedChannels(profileChannels)
+            model.addAttribute("name", profile.name)
+            model.addAttribute("email", profile.email)
+            model.addAttribute("identity", profile.name)
 
-        model.addAttribute("name", profile.name)
-        model.addAttribute("email", profile.email)
-        model.addAttribute("channels", profileChannels.joinToString("\n"))
-        model.addAttribute("members", membersChannels.joinToString("\n"))
-        model.addAttribute("memberships", memberships.joinToString("\n"))
-        model.addAttribute("identity", profile.name)
+            return "loginSuccessCreator"
+        } else {
+            //supporter flow
+            val profile = api.getUserInfo().toModel()!!
+            val channels = api.getChannelInfo().toModel()
+            val profileChannels = channels?.items?.map { it.id }?.toList() ?: emptyList()
+            val memberships = channelMembershipsRepository.getSubscribedChannels(profileChannels)
 
-        return "loginSuccess"
+            model.addAttribute("name", profile.name)
+            model.addAttribute("email", profile.email)
+            model.addAttribute("memberships", memberships.joinToString("\n"))
+            model.addAttribute("identity", profile.name)
+
+            return "loginSuccessSupporter"
+        }
     }
 
     @PostMapping("/saveEmail")

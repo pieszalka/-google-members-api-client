@@ -16,20 +16,6 @@
 
 <div class="container">
     <div class="col-sm-6 well">
-        <h3>Your channels:</h3>
-        <div th:text="${channels}"></div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="col-sm-6 well">
-        <h3>Your channels members:</h3>
-        <div th:text="${members}"></div>
-    </div>
-</div>
-
-<div class="container">
-    <div class="col-sm-6 well">
         <h3>You have joined memberships for channels:</h3>
         <div th:text="${memberships}"></div>
 <form action="#" th:action="@{/saveEmail}" method="post">
