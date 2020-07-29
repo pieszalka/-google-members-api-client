@@ -2,6 +2,7 @@ package com.fourthwall.googlemembersapi.client.rest
 
 import arrow.core.Either
 import com.fourthwall.googlemembersapi.client.domain.GoogleApiDomain
+import com.fourthwall.googlemembersapi.client.domain.model.FourthwallYoutubeSubscriptionDto
 import com.fourthwall.googlemembersapi.client.domain.repository.*
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClient
 import org.springframework.security.oauth2.client.OAuth2AuthorizedClientService
@@ -27,6 +28,7 @@ class LoginEndpoint(
 ) {
     val authorizationRequestBaseUri = "oauth2/authorize-client"
     val googleYoutubeApiUrl = "https://www.googleapis.com/"
+    val fourthwallApiUrl = "https://fourthwall.com/"
 
     @GetMapping("/login")
     fun getLoginCreatorPage(model: Model): String {
@@ -43,7 +45,7 @@ class LoginEndpoint(
     fun getLoginInfo(model: Model, authentication: OAuth2AuthenticationToken): String? {
         val client: OAuth2AuthorizedClient = authorizedClientService.loadAuthorizedClient(authentication.authorizedClientRegistrationId, authentication.name)
         val token = client.accessToken.tokenValue
-        val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
+        val api = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, token)
 
         val members = api.listAllMembers("snippet", 100).toModel()
         if (members != null) {
@@ -81,12 +83,17 @@ class LoginEndpoint(
             @RequestParam("identity") identity: String,
             @RequestParam("email") email: String,
             @RequestParam("memberships") memberships: String,
+            @RequestParam("message") message: String,
             model: Model,
             authentication: OAuth2AuthenticationToken
             ): String? {
         memberships.split("\n").forEach { membership ->
             membersSubscriptionsRepository.saveSubscription(Subscription(identity, email, membership))
         }
+        val client: OAuth2AuthorizedClient = authorizedClientService.loadAuthorizedClient(authentication.authorizedClientRegistrationId, authentication.name)
+        val token = client.accessToken.tokenValue
+        val api = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, token)
+        api.sendSubscription(FourthwallYoutubeSubscriptionDto(email, identity, message))
 
         model.addAttribute("identity", identity)
         model.addAttribute("email", email)

@@ -1,14 +1,16 @@
 package com.fourthwall.googlemembersapi.client.domain
 
 import arrow.core.Either
+import com.fourthwall.googlemembersapi.client.domain.api.FourthwallApi
 import com.fourthwall.googlemembersapi.client.domain.model.ChannelListDto
+import com.fourthwall.googlemembersapi.client.domain.model.FourthwallYoutubeSubscriptionDto
 import com.fourthwall.googlemembersapi.client.domain.model.ProfileDto
 import com.fourthwall.googlemembersapi.client.domain.model.RefreshTokenDto
 import org.openapitools.client.models.MemberListDto
 import org.openapitools.client.models.MembershipLevelListDto
 import org.slf4j.LoggerFactory
 
-interface GoogleApi : GoogleYoutubeMembersApi, GoogleYoutubeMembershipsLevelsApi, GoogleYoutubeDataApi, GoogleProfileDataApi
+interface GoogleApi : GoogleYoutubeMembersApi, GoogleYoutubeMembershipsLevelsApi, GoogleYoutubeDataApi, GoogleProfileDataApi, FourthwallClientApi
 
 interface GoogleYoutubeMembersApi {
     fun listAllMembers(part: String, maxResults: Int): Either<Throwable, MemberListDto>
@@ -30,11 +32,16 @@ interface GoogleProfileDataApi {
     fun refreshToken(clientId: String, clientSecret: String, refreshToken: String): Either<Throwable, RefreshTokenDto>
 }
 
+interface FourthwallClientApi {
+    fun sendSubscription(subscription: FourthwallYoutubeSubscriptionDto): Either<Throwable, Unit>
+}
+
 open class GoogleApiDomain(
         private val membersApi: GoogleYoutubeMembersApi,
         private val membershipsLevelsApi: GoogleYoutubeMembershipsLevelsApi,
         private val youtubeApi: GoogleYoutubeDataApi,
-        private val profileAPi: GoogleProfileDataApi
+        private val profileApi: GoogleProfileDataApi,
+        private val fourthwallApi: FourthwallClientApi
 
 ) : GoogleApi {
 
@@ -72,21 +79,27 @@ open class GoogleApiDomain(
 
     override fun getUserInfo(): Either<Throwable, ProfileDto> {
         logger.info("get user info")
-        return profileAPi.getUserInfo()
+        return profileApi.getUserInfo()
     }
 
     override fun refreshToken(clientId: String, clientSecret: String, refreshToken: String): Either<Throwable, RefreshTokenDto> {
         logger.info("refresh token")
-        return profileAPi.refreshToken(clientId, clientSecret, refreshToken)
+        return profileApi.refreshToken(clientId, clientSecret, refreshToken)
+    }
+
+    override fun sendSubscription(subscription: FourthwallYoutubeSubscriptionDto): Either<Throwable, Unit> {
+        logger.info("send subscription to fourthwall")
+        return fourthwallApi.sendSubscription(subscription)
     }
 
     companion object {
-        fun create(googleYoutubeApiUrl: String, token: String): GoogleApiDomain {
+        fun create(googleYoutubeApiUrl: String, fourtwallApiUrl: String, token: String): GoogleApiDomain {
             return GoogleApiDomain(
                     GoogleYoutubeMembersClient.create(googleYoutubeApiUrl, token),
                     GoogleYoutubeMembershipsLevelsClient.create(googleYoutubeApiUrl, token),
                     GoogleYoutubeDataClient.create(googleYoutubeApiUrl, token),
-                    GoogleProfileDataClient.create(googleYoutubeApiUrl, token)
+                    GoogleProfileDataClient.create(googleYoutubeApiUrl, token),
+                    FourthwallClient.create(fourtwallApiUrl)
             )
         }
     }

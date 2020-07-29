@@ -14,39 +14,40 @@ import org.springframework.web.bind.annotation.RestController
 class TestEndpoint {
 
     val googleYoutubeApiUrl = "https://www.googleapis.com/"
+    val fourthwallApiUrl = "https://fourthwall.com/"
     val token = ""
 
     @GetMapping("/listAllMembers")
     fun listAllMembers(): ResponseEntity<String> {
-        val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
+        val api = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, token)
         val result = api.listAllMembers("snippet", 10)
         return result.toResponseEntity()
     }
 
     @GetMapping("/checkUsersForTheirMemberships")
     fun checkUsersForTheirMemberships(): ResponseEntity<String> {
-        val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
+        val api = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, token)
         val result = api.checkUsersForTheirMemberships("snippet", "UC5IKUmQWDT6Fh9YL9lMRyHQ")
         return result.toResponseEntity()
     }
 
     @GetMapping("/listMembersUpdates")
     fun listMembersUpdates(): ResponseEntity<String> {
-        val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
+        val api = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, token)
         val result = api.listMembersUpdates("snippet", "updates")
         return result.toResponseEntity()
     }
 
     @GetMapping("/listMembers")
     fun listMembers(): ResponseEntity<String> {
-        val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
+        val api = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, token)
         val result = api.listMembers("snippet", 10,"UC5IKUmQWDT6Fh9YL9lMRyHQ", "all_current", "", "")
         return result.toResponseEntity()
     }
 
     @GetMapping("/listAllPricingLevels")
     fun listAllPricingLevels(): ResponseEntity<String> {
-        val api = GoogleApiDomain.create(googleYoutubeApiUrl, token)
+        val api = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, token)
         val result = api.listAllPricingLevels("id")
         return result.toResponseEntity()
     }

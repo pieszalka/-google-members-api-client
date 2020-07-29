@@ -16,16 +16,17 @@ class RefreshMembershipsTask(
 ) {
 
     val googleYoutubeApiUrl = "https://www.googleapis.com/"
+    val fourthwallApiUrl = "https://fourthwall.com/"
 
     private val logger = LoggerFactory.getLogger(this::class.java.name.substringBefore("\$Companion"))
 
-    @Scheduled(fixedDelay = 10000)
+    @Scheduled(fixedDelay = 100000)
     fun refresh() {
         logger.info("Start refreshing memberships")
         val tokens = tokensRepository.getAllTokens()
         logger.info("Found " + tokens.size + " creators")
         tokens.forEach { token ->
-            val api = GoogleApiDomain.create(googleYoutubeApiUrl, token.accessToken)
+            val api = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, token.accessToken)
             val members = api.listAllMembers("snippet", 100).toModel()
             if (members != null) {
                 logger.info("Found " + (members.items?.size ?: 0) + " members")
@@ -37,8 +38,8 @@ class RefreshMembershipsTask(
                         "EGl_R5NoSJ_2Govbem4gIXBO",
                         token.refreshToken
                 ).toModel()!!
-                val newApi = GoogleApiDomain.create(googleYoutubeApiUrl, newToken.accessToken)
-                val newMembers = api.listAllMembers("snippet", 100).toModel()
+                val newApi = GoogleApiDomain.create(googleYoutubeApiUrl, fourthwallApiUrl, newToken.accessToken)
+                val newMembers = newApi.listAllMembers("snippet", 100).toModel()
                 if (newMembers != null) {
                     logger.info("Found " + (newMembers.items?.size ?: 0) + " members")
                     saveMembers(newMembers)

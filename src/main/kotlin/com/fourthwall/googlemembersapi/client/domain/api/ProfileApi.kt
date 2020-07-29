@@ -11,7 +11,7 @@ interface ProfileApi {
     @GET("/oauth2/v3/userinfo")
     fun getUserInfo(): Call<ProfileDto>
 
-    @POST("/token")
+    @POST("/oauth2/v4/token")
     fun refreshToken(
             @Query("client_id") clientId: String,
             @Query("client_secret") clientSecret: String,
