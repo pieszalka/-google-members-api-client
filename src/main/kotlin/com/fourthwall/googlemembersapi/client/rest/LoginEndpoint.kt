@@ -33,8 +33,7 @@ class LoginEndpoint(
         val clientRegistrations =  clientRegistrationRepository as Iterable<ClientRegistration>
         val oauth2AuthenticationUrls: HashMap<String, String> = HashMap()
         clientRegistrations.forEach(Consumer { registration: ClientRegistration ->
-            oauth2AuthenticationUrls[registration.clientName + " login for creator"] = authorizationRequestBaseUri + "/" + registration.registrationId + "?type=creator"
-            oauth2AuthenticationUrls[registration.clientName + " login for supporter"] = authorizationRequestBaseUri + "/" + registration.registrationId + "?type=supporter"
+            oauth2AuthenticationUrls[registration.clientName] = authorizationRequestBaseUri + "/" + registration.registrationId
         })
         model.addAttribute("urls", oauth2AuthenticationUrls)
         return "login"
@@ -73,7 +72,7 @@ class LoginEndpoint(
             model.addAttribute("memberships", memberships.joinToString("\n"))
             model.addAttribute("identity", profile.name)
 
-            return "loginSuccessSupporter"
+            return "loginSuccess"
         }
     }
 

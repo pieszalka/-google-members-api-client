@@ -1,0 +1,24 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Save Success</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" />
+</head>
+<body>
+<h3>
+<div class="label label-info">
+   Success, saved <span th:text="${email}"></span> for user <span th:text="${identity}"></span>!
+   </div>
+   </h3>
+
+<div class="container">
+    <div class="col-sm-6 well">
+        <h3>Saved subscriptions:</h3>
+        <div th:text="${subscriptions}"></div>
+    </div>
+</div>
+
+</body>
+</html>
