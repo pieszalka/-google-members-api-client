@@ -14,9 +14,9 @@ plugins {
 	id "io.spring.dependency-management" version "1.0.9.RELEASE"
 	id "org.jetbrains.kotlin.jvm" version "1.3.72"
 	id "org.jetbrains.kotlin.plugin.spring" version "1.3.72"
-//	id 'java'
-//	id 'war'
-//	id "org.gretty" version "3.0.3"
+	id 'java'
+	id 'war'
+	id "org.gretty" version "3.0.3"
 	//id "com.google.cloud.tools.appengine" version "2.2.0"
 }
 
@@ -36,18 +36,23 @@ apply plugin: 'kotlin'
 apply plugin: "kotlin-spring"
 apply plugin: 'java'
 apply plugin: 'war'
-//apply plugin: 'org.akhikhl.gretty'
+apply plugin: 'org.akhikhl.gretty'
 apply plugin: 'com.google.cloud.tools.appengine'
 
 dependencies {
 
 	//appengine
-//	providedCompile "javax.servlet:javax.servlet-api:3.1.0"
-	providedCompile "com.google.appengine:appengine:+"
+	//providedCompile "javax.servlet:javax.servlet-api:3.1.0"
+	implementation("com.google.appengine:appengine:+")
 
 	//spring
 	implementation("org.springframework.boot:spring-boot-starter:2.3.1.RELEASE")
-	implementation("org.springframework.boot:spring-boot-starter-web:2.3.1.RELEASE")
+	implementation("org.springframework.boot:spring-boot-starter-web:2.3.1.RELEASE") {
+        exclude module: "spring-boot-starter-tomcat"
+    }
+	implementation("org.springframework.boot:spring-boot-starter-jetty")
+	implementation("org.eclipse.jetty:jetty-webapp:9.+")
+	implementation("org.eclipse.jetty:jetty-jsp:9.+")
 	implementation("org.springframework.security:spring-security-oauth2-client:5.3.3.RELEASE")
 	implementation("org.springframework.security:spring-security-oauth2-jose:5.3.3.RELEASE")
 	implementation("org.springframework.security:spring-security-web:5.3.3.RELEASE")
@@ -84,9 +89,9 @@ dependencies {
 	implementation("org.thymeleaf:thymeleaf-spring5:3.0.11.RELEASE")
 
 	testImplementation("io.kotlintest:kotlintest-runner-junit5:3.1.0")
-	testImplementation("org.springframework.boot:spring-boot-starter-test") //{
-	//	exclude(group = "org.junit.vintage", module = "junit-vintage-engine")
-	//}
+	testImplementation("org.springframework.boot:spring-boot-starter-test") {
+		exclude module: "junit-vintage-engine"
+	}
 }
 
 test {
@@ -99,11 +104,10 @@ compileKotlin {
 	}
 }
 
-/*
 gretty {
 	servletContainer = 'jetty9'  // What App Engine Flexible uses
 }
-*/
+
 appengine {
 	deploy {   // deploy configuration
 		projectId = 'southern-frame-284823'
