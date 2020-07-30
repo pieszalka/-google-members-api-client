@@ -113,5 +113,6 @@ appengine {
 		projectId = 'southern-frame-284823'
 		stopPreviousVersion = true  // default - stop the current version
 		promote = true              // default - & make this the current version
+		version = 'GCLOUD_CONFIG'
 	}
 }
