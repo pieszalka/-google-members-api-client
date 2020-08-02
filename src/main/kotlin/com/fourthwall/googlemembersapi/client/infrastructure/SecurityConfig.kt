@@ -15,7 +15,6 @@ import org.springframework.security.oauth2.core.endpoint.OAuth2AuthorizationRequ
 
 
 @Configuration
-@PropertySource("application-oauth2.properties")
 class SecurityConfig(val clientRegistrationRepository: ClientRegistrationRepository) : WebSecurityConfigurerAdapter() {
     @Throws(Exception::class)
     override fun configure(http: HttpSecurity) {

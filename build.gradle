@@ -17,7 +17,14 @@ plugins {
 	id 'java'
 	id 'war'
 	id "org.gretty" version "3.0.3"
-	//id "com.google.cloud.tools.appengine" version "2.2.0"
+}
+
+repositories {
+	maven {
+		url 'https://oss.sonatype.org/content/repositories/snapshots'
+	}
+	mavenCentral()
+	jcenter()
 }
 
 group = "com.fourthwall.googlemembersapi"
@@ -42,7 +49,6 @@ apply plugin: 'com.google.cloud.tools.appengine'
 dependencies {
 
 	//appengine
-	//providedCompile "javax.servlet:javax.servlet-api:3.1.0"
 	implementation("com.google.appengine:appengine:+")
 
 	//spring
@@ -95,6 +101,9 @@ dependencies {
 		exclude module: "junit-vintage-engine"
 	}
 }
+
+appengineDeploy.dependsOn test
+appengineStage.dependsOn test
 
 test {
 	useJUnitPlatform()

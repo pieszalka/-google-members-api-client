@@ -1,9 +1,8 @@
 # Getting Started
 
-### TODO
-* save and refresh creator token
-* backend process of update memberships list
-* secured each page of membership verification
+### How to run
+local: gradle appengineRun
+appengine: gradle appengineDeploy
 
 ### Application flow
 1. Process creator authorization and download its channels memberships
@@ -16,21 +15,20 @@ To get creator channel memberships application has to authorize creator using hi
 * go to login page: http://localhost:8080/login
 * click button: "login with google"
 * authorize with Tyrion Frey (test creator account)
-* after correct authorization and redirect to page http://localhost:8080/loginSuccess will be visible 
-parsed memberships data in "Your channels members" section
+* after correct authorization and redirect to page http://localhost:8080/loginSuccessCreator where is than you message
+* creator auth token is saved in repository
+* backend process triggered by cron refresh creator token and update creator memberships list
 
 ### Supporter flow
 Supporter youtube membership is verified using google authorization, and his email data is saved:
 * go to login page: http://localhost:8080/login
 * click button: "login with google"
 * authorize with supporter google auccount that join to some of creator youtube channel 
-(for test purpose I used my google account and I manually hardcoded its channel in ChannelMembershipsRepository)
 * after correct authorization and redirect to page http://localhost:8080/loginSuccess will be visible 
-supporter youtube channels ids, creators channels ids that supporter joined on youtube 
-("You have joined memberships for channels" section), and form for putting email address
+form for putting email address
 * email address included as default in form is address parsed from supporter google profile
 * it could be changed and submitted
-* after submitting it is saved and confirmation page is shown
+* after submitting it is saved in repository and send to fourthwall api
 
 ### Technical information:
 - google authorization is done using spring-security-web and spring-security-oauth2 libraries
