@@ -51,7 +51,9 @@ dependencies {
         exclude module: "spring-boot-starter-tomcat"
     }
 	implementation("org.springframework.boot:spring-boot-starter-jetty")
-	implementation("org.eclipse.jetty:jetty-webapp:9.+")
+    implementation("org.springframework.cloud:spring-cloud-gcp-starters:1.2.3.RELEASE")
+
+    implementation("org.eclipse.jetty:jetty-webapp:9.+")
 	implementation("org.eclipse.jetty:jetty-jsp:9.+")
 	implementation("org.springframework.security:spring-security-oauth2-client:5.3.3.RELEASE")
 	implementation("org.springframework.security:spring-security-oauth2-jose:5.3.3.RELEASE")
